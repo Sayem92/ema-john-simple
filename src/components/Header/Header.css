@@ -14,6 +14,16 @@
     font-size: 17px;
     margin-left: 36px;
 }
+.header button{
+    background-color: #1C2B35;
+    color: white;
+    border: none;
+    margin-left: 36px;
+    font-size: 17px;
+}
+.header button:hover{
+    color: greenyellow;
+}
 .header a:hover{
     color: greenyellow;
 }

@@ -6,26 +6,26 @@ import ReviewItem from '../ReviewItem/ReviewItem';
 
 const Orders = () => {
     //{products,initialCart:previousCart};
-    const {products, initialCart} = useLoaderData();
+    const { products, initialCart } = useLoaderData();
     const [cart, setCart] = useState(initialCart);
 
-    const handleRemoveItem = (id) =>{
-        const remaining = cart.filter(product => product.id !== id);
+    const handleRemoveItem = (id) => {
+        const remaining = cart.filter(product => product._id !== id);
         setCart(remaining);
         removeFromDb(id);
     }
 
-    const clearCart = () =>{
+    const clearCart = () => {
         setCart([]);
         deleteShoppingCart();
- }
+    }
 
     return (
         <div className='shop-container'>
-           <div className='orders-container'>
+            <div className='orders-container'>
                 {
                     cart.map(product => <ReviewItem
-                        key={product.id}
+                        key={product._id}
                         product={product}
                         handleRemoveItem={handleRemoveItem}
                     ></ReviewItem>)
@@ -33,14 +33,14 @@ const Orders = () => {
                 {
                     cart.length === 0 && <h2>No Item for review.Please <Link to="/">Shop more </Link></h2>
                 }
-           </div>
-           <div className='cart-container'>
-            <Cart 
-            clearCart={clearCart} 
-            cart={cart}>
-               
-            </Cart>
-           </div>
+            </div>
+            <div className='cart-container'>
+                <Cart clearCart={clearCart} cart={cart}>
+                    <Link to='/shipping'>
+                        <button>Proceed Shipping</button>
+                    </Link>
+                </Cart>
+            </div>
         </div>
     );
 };
